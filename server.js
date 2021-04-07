@@ -9,14 +9,14 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 const db = knex({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         }
     }
 });
@@ -26,7 +26,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => { res.send(db.users) });
+app.get('/', (req, res) => { res.send('it is working') });
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt); });
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt); });
 app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db); });
