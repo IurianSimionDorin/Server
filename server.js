@@ -12,10 +12,8 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        host: 'postgresql-round-86673',
-        user: 'simi',
-        password: '',
-        database: 'smart-brain'
+        connectionString: rocess.env.DATABASE_URL,
+        rejectUnauthorized: false
     }
 });
 
